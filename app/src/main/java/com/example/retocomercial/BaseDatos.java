@@ -42,7 +42,6 @@ public class BaseDatos extends AppCompatActivity {
                     aviso.setGravity(Gravity.BOTTOM, 0, 0);
                     aviso.show();
                 }else{
-                    finish();
                     Toast aviso = Toast.makeText(getApplicationContext(), "BIENVENIDO "+nombre.getText().toString().toUpperCase(), Toast.LENGTH_SHORT);
                     aviso.setGravity(Gravity.BOTTOM, 0, 0);
                     aviso.show();
