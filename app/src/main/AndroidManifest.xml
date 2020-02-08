@@ -31,6 +31,9 @@
         <activity android:name=".Calendario" />
         <activity android:name=".Evento" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".Adaptador" />
+        <activity android:name=".Articulo" />
+        <activity android:name=".Catalogo" />
 
         <meta-data
             android:name="com.google.android.gms.version"

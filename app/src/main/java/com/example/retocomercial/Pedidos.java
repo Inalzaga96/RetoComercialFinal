@@ -32,6 +32,7 @@ public class Pedidos extends AppCompatActivity {
         anadir=findViewById(R.id.btnAnadir);
         Button home = (Button) findViewById(R.id.btnHome);
         Button nuevo = (Button) findViewById(R.id.btnAnadir);
+        Button catalogo = (Button) findViewById(R.id.btnCatalogo);
         home.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 vuelve(null, 1234);
@@ -41,6 +42,12 @@ public class Pedidos extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 NuevoPedido(null);
+            }
+        });
+        catalogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                catalogo(null);
             }
         });
 
@@ -97,5 +104,9 @@ public class Pedidos extends AppCompatActivity {
         ArrayAdapter<String> adapter;
         adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listaArray);
         pedidos.setAdapter(adapter);
+    }
+    private void catalogo(View view){
+        Intent intent = new Intent(this, Catalogo.class);
+        startActivityForResult(intent,1234);
     }
 }
