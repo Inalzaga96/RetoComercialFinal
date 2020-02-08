@@ -15,5 +15,4 @@ public class Articulo {
     public int getImgFoto(){return imgFoto;}
     public String getTitulo(){return titulo;}
     public String getContenido(){return contenido;}
-
 }

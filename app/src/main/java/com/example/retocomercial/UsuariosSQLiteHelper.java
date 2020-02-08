@@ -47,7 +47,8 @@ public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
     private String articulos="create table articulos("+
             "id_articulo Integer PRIMARY KEY AUTOINCREMENT,"+
             "descripcion varchar(30),"+
-            "precio Integer)";
+            "precio Integer ," +
+            "imagen varchar(50))";
 
     //private String crearUsuarios = "INSERT INTO usuarios(id_comercial,usuario,pwd) VALUES(9223372036854775807,'mikel', '1234');";
     private String crearUsuarios2= "INSERT INTO usuarios(usuario,pwd) VALUES('Kerman', '1234'), ('Iñaki','1234');";
@@ -56,6 +57,14 @@ public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
     private String crearEventos2="INSERT INTO EVENTOS(id_comercial,NOMBRE,DESCRIPCION,HORA,FECHA) VALUES(2,'Salir de casa','hoy','15:09','06/08/19')";
     private String crearPedidos="INSERT INTO PEDIDOS(ID_PARTNER,FECHA) VALUES(1,'02/06/19')";
     private String crearPedidos2="INSERT INTO PEDIDOS(ID_PARTNER,FECHA) VALUES(2,'03/08/19')";
+    private String creaArticulo="INSERT INTO articulos(id_articulo,descripcion,precio,imagen) VALUES(1,'Mancuernas 5kg',17,'mancuernas5')";
+    private String creaArticulo2="INSERT INTO articulos(id_articulo,descripcion,precio,imagen) VALUES(2,'Mancuernas 10kg',25,'mancuernas10')";
+    private String creaArticulo3="INSERT INTO articulos(id_articulo,descripcion,precio,imagen) VALUES(3,'Norditrack C300',150,'norditrack')";
+    private String creaArticulo4="INSERT INTO articulos(id_articulo,descripcion,precio,imagen) VALUES(4,'Fitfiu Besp-22 Bicicleta Indoor',300,'spinning')";
+    private String creaArticulo5="INSERT INTO articulos(id_articulo,descripcion,precio,imagen) VALUES(5,'Maquina Gimnasio Multitension',250,'multitension')";
+
+
+
     //private String crearUsuarios2= "INSERT INTO usuarios(usuario,pwd) VALUES('mikel01', '1234')";
     public UsuariosSQLiteHelper(Context contexto, String nombre,
                                 SQLiteDatabase.CursorFactory factory, int version) {
@@ -77,6 +86,11 @@ public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(crearEventos2);
         db.execSQL(crearPedidos);
         db.execSQL(crearPedidos2);
+        db.execSQL(creaArticulo);
+        db.execSQL(creaArticulo2);
+        db.execSQL(creaArticulo3);
+        db.execSQL(creaArticulo4);
+        db.execSQL(creaArticulo5);
     }
 
     @Override
