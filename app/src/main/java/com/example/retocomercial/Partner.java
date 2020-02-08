@@ -32,31 +32,16 @@ import javax.xml.transform.stream.StreamResult;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Partner extends AppCompatActivity {
+    private Adaptador2 adaptador;
     private ListView lPartners;
-    private ArrayList<String> aParners=new ArrayList<String>();
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.partners);
         lPartners =findViewById(R.id.partners);
-        UsuariosSQLiteHelper usdbh =new UsuariosSQLiteHelper(this, "BaseDatosIkeya", null, 1);
 
-        SQLiteDatabase db = usdbh.getReadableDatabase();
-
-        ArrayAdapter<String> adapter;
-        adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,aParners);
-        lPartners.setAdapter(adapter);
-
-        Cursor c = db.rawQuery(" SELECT nombre,apellidos,empresa FROM partners", null);
-
-        if (c.moveToFirst()) {
-            do {
-                String codigo= c.getString(0);
-                String nombre = c.getString(1);
-                String empresa = c.getString(2);
-                aParners.add(codigo+" "+nombre + " ("+empresa+") " );
-            } while(c.moveToNext());
-        }
+        lPartners = (ListView) findViewById(R.id.partners);
+        adaptador = new Adaptador2(this,GetArrayItems());
+        lPartners.setAdapter(adaptador);
 
         //  BOTONES
         Button btnVisualiza = (Button) findViewById(R.id.btnVisualiza);
@@ -85,6 +70,25 @@ public class Partner extends AppCompatActivity {
                 enviaXML();
             }
         });
+    }
+    private ArrayList<Partners> GetArrayItems(){
+        ArrayList<Partners> listItems = new ArrayList<>();
+
+        UsuariosSQLiteHelper usdbh =new UsuariosSQLiteHelper(this, "BaseDatosIkeya", null, 1);
+        SQLiteDatabase db = usdbh.getReadableDatabase();
+
+        Cursor c = db.rawQuery(" SELECT idPartner,nombre,apellidos,empresa FROM partners", null);
+
+        if (c.moveToFirst()) {
+            do {
+                Integer codigo= c.getInt(0);
+                String nombre = c.getString(1);
+                String apellido = c.getString(2);
+                String empresa = c.getString(3);
+                listItems.add(new Partners("Partner "+codigo,"Nombre : "+ nombre + " "+ apellido , "Empresa : "+ empresa));
+            } while(c.moveToNext());
+        }
+        return listItems;
     }
     private void vuelve(View view,int num){
         Intent intent = new Intent(this, MainActivity.class);

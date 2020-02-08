@@ -34,6 +34,8 @@
         <activity android:name=".Adaptador" />
         <activity android:name=".Articulo" />
         <activity android:name=".Catalogo" />
+        <activity android:name=".Partners" />
+        <activity android:name=".Adaptador2" />
 
         <meta-data
             android:name="com.google.android.gms.version"
