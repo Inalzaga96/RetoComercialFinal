@@ -16,21 +16,24 @@ public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
             "direccion varchar(80)," +
             "telefono varchar(15)," +
             "poblacion varchar(40)," +
-            "email varchar(50));";
+            "email varchar(50)," +
+            "FOREIGN KEY(id_comercial) REFERENCES usuarios(id_comercial));";
 
 
     private String lineas = "create table lineas(" +
             "cod Integer PRIMARY KEY AUTOINCREMENT," +
             "cod_producto Integer," +
             "cod_pedido Integer," +
-            "nombre_producto varchar(100)," +
             "unidad int," +
-            "importe float)";
+            "importe float," +
+            "FOREIGN KEY(cod_pedido) REFERENCES pedidos(cod),"+
+            "FOREIGN KEY(cod_producto) REFERENCES articulos(id_articulo))";
 
     private String pedidos="create table pedidos("+
             "cod Integer PRIMARY KEY AUTOINCREMENT,"+
             "id_partner Integer,"+
-            "fecha varchar(100))";
+            "fecha varchar(100),"+
+            "FOREIGN KEY(id_partner) REFERENCES Partners(idPartner))";
 
     private String login="create table usuarios("+
             "id_comercial Integer PRIMARY KEY AUTOINCREMENT,"+
@@ -43,7 +46,9 @@ public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
             "nombre varchar(40),"+
             "descripcion varchar(100)," +
             "hora varchar(6)," +
-            "fecha varchar(30))";
+            "fecha varchar(30),"+
+            "FOREIGN KEY(id_comercial) REFERENCES usuarios(id_comercial))";
+
     private String articulos="create table articulos("+
             "id_articulo Integer PRIMARY KEY AUTOINCREMENT,"+
             "descripcion varchar(30),"+
