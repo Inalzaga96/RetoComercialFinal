@@ -1,9 +1,12 @@
 package com.example.retocomercial;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,10 +19,17 @@ public class Catalogo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.catalogo);
-
+        Button Volver = (Button) findViewById(R.id.btnVolver5);
         lvItems = (ListView) findViewById(R.id.lvItems);
         adaptador = new Adaptador(this,GetArrayItems());
         lvItems.setAdapter(adaptador);
+        Volver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Catalogo.this, Pedidos.class);
+                startActivityForResult(intent,3456);
+            }
+        });
 
 
     }

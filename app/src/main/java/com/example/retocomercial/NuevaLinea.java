@@ -32,7 +32,7 @@ public class NuevaLinea extends AppCompatActivity {
         btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NuevaLinea.this, VisualizaLineas.class);
+                Intent intent = new Intent(NuevaLinea.this, Pedidos.class);
                 startActivityForResult(intent,3456);
             }
         });
@@ -59,7 +59,7 @@ public class NuevaLinea extends AppCompatActivity {
             String sql = String.format("INSERT INTO lineas VALUES('%s', '%s', '%s', '%s', '%s')",(count+1),codProd.getText(),codigoPedido,cantidad.getText(),importe.getText());
             try {
                 db.execSQL(sql);
-                Intent intent = new Intent(this, VisualizaLineas.class);
+                Intent intent = new Intent(this, Pedidos.class);
                 startActivityForResult(intent,3456);
             } catch (Exception e) {
                 Toast aviso = Toast.makeText(getApplicationContext(), "INSERT ERRONEO!", Toast.LENGTH_SHORT);

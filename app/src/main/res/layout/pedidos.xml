@@ -8,13 +8,14 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btnBorrar"
+        android:id="@+id/btnCatalogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="35dp"
-        android:text="Borrar"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnAnadir"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginBottom="16dp"
+        android:text="Catalogo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnHome" />
 
     <Button
         android:id="@+id/btnHome"
@@ -28,20 +29,10 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btnCatalogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="29dp"
-        android:text="Catalogo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnHome" />
-
     <ListView
         android:id="@+id/listPedidos"
-        android:layout_width="0dp"
-        android:layout_height="320dp"
+        android:layout_width="408dp"
+        android:layout_height="457dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="47dp"
         android:layout_marginEnd="1dp"
@@ -62,10 +53,10 @@
         android:id="@+id/btnAnadir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="21dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
         android:text="Añadir"
         app:layout_constraintBottom_toTopOf="@+id/spnPartners"
-        app:layout_constraintEnd_toStartOf="@+id/btnBorrar" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
