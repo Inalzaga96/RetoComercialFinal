@@ -16,8 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Pedidos extends AppCompatActivity {
     private Spinner partners;
+    private Adaptador3 adaptador;
     private ListView pedidos;
-    private ArrayList<String> listaArray;
+    private ArrayList<Pedido> listaArray;
     private ArrayList<String> listaArraySpinner;
     private ArrayList<Integer> codPartner;
     private Button anadir;
@@ -28,7 +29,7 @@ public class Pedidos extends AppCompatActivity {
         pedidos=findViewById(R.id.listPedidos);
         listaArraySpinner=new ArrayList<String>();
         codPartner=new ArrayList<Integer>();
-        listaArray=new ArrayList<String>();
+        listaArray=new ArrayList<Pedido>();
         anadir=findViewById(R.id.btnAnadir);
         Button home = (Button) findViewById(R.id.btnHome);
         Button nuevo = (Button) findViewById(R.id.btnAnadir);
@@ -50,13 +51,11 @@ public class Pedidos extends AppCompatActivity {
                 catalogo(null);
             }
         });
-
+//===============================================================================================================
+//===============================================================================================================
         UsuariosSQLiteHelper usdbh =new UsuariosSQLiteHelper(this, "BaseDatosIkeya", null, 1);
-
         final SQLiteDatabase db = usdbh.getReadableDatabase();
-
         Cursor c0 = db.rawQuery(" SELECT empresa, idPartner FROM Partners", null);
-
         if (c0.moveToFirst()) {
             //Recorremos el cursor hasta que no haya más registros
             do {
@@ -68,24 +67,36 @@ public class Pedidos extends AppCompatActivity {
         ArrayAdapter<String> adapter2;
         adapter2=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listaArraySpinner);
         partners.setAdapter(adapter2);
-
+//===============================================================================================================
+//===============================================================================================================
 
         partners.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 listaArray.clear();
-                Cursor c = db.rawQuery("SELECT cod, fecha FROM pedidos WHERE id_partner="+codPartner.get(partners.getSelectedItemPosition()), null);
+                Cursor c = db.rawQuery("SELECT cod,id_partner, fecha FROM pedidos WHERE id_partner="+codPartner.get(partners.getSelectedItemPosition()), null);
                 if (c.moveToFirst()) {
-                    //Recorremos el cursor hasta que no haya más registros
                     do {
-                        listaArray.add(c.getInt(c.getColumnIndex("cod"))+"  -  "+c.getString(1));
+                        Integer codigo= c.getInt(0);
+                        Integer idPart = c.getInt(1);
+                        String fecha = c.getString(2);
+                        listaArray.add(new Pedido(codigo.toString(),"Partner numero "+idPart, "Fecha pedido "+fecha));
                     } while(c.moveToNext());
                 }
-                addPedido();
+                adaptador = new Adaptador3(Pedidos.this,listaArray);
+                pedidos.setAdapter(adaptador);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+        pedidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(Pedidos.this,VisualizaLineas.class);
+                intent.putExtra("objetoData2",listaArray.get(position));
+                startActivity(intent);
             }
         });
     }
@@ -99,11 +110,6 @@ public class Pedidos extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         setResult(RESULT_OK,intent);
         finish();
-    }
-    private void addPedido(){
-        ArrayAdapter<String> adapter;
-        adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listaArray);
-        pedidos.setAdapter(adapter);
     }
     private void catalogo(View view){
         Intent intent = new Intent(this, Catalogo.class);

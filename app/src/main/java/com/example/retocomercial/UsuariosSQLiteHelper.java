@@ -24,8 +24,8 @@ public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
             "cod Integer PRIMARY KEY AUTOINCREMENT," +
             "cod_producto Integer," +
             "cod_pedido Integer," +
-            "unidad int," +
-            "importe float," +
+            "unidad Integer," +
+            "importe Integer," +
             "FOREIGN KEY(cod_pedido) REFERENCES pedidos(cod),"+
             "FOREIGN KEY(cod_producto) REFERENCES articulos(id_articulo))";
 
@@ -61,6 +61,8 @@ public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
     private String crearEventos="INSERT INTO EVENTOS(id_comercial,NOMBRE,DESCRIPCION,HORA,FECHA) VALUES(1,'Ir a casa','mañana','16:20','02/08/19')";
     private String crearEventos2="INSERT INTO EVENTOS(id_comercial,NOMBRE,DESCRIPCION,HORA,FECHA) VALUES(2,'Salir de casa','hoy','15:09','06/08/19')";
     private String crearPedidos="INSERT INTO PEDIDOS(ID_PARTNER,FECHA) VALUES(1,'02/06/19')";
+    private String crearLineas="INSERT INTO lineas VALUES(1,2,1,20,500)";
+    private String crearLineas2="INSERT INTO lineas VALUES(2,3,1,10,1500)";
     private String crearPedidos2="INSERT INTO PEDIDOS(ID_PARTNER,FECHA) VALUES(2,'03/08/19')";
     private String creaArticulo="INSERT INTO articulos(id_articulo,descripcion,precio,imagen) VALUES(1,'Mancuernas 5kg',17,'mancuernas5')";
     private String creaArticulo2="INSERT INTO articulos(id_articulo,descripcion,precio,imagen) VALUES(2,'Mancuernas 10kg',25,'mancuernas10')";
@@ -89,6 +91,8 @@ public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(crearEventos);
         db.execSQL(crearEventos2);
         db.execSQL(crearPedidos);
+        db.execSQL(crearLineas);
+        db.execSQL(crearLineas2);
         db.execSQL(crearPedidos2);
         db.execSQL(creaArticulo);
         db.execSQL(creaArticulo2);
