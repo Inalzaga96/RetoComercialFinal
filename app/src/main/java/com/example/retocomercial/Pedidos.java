@@ -95,8 +95,9 @@ public class Pedidos extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(Pedidos.this,VisualizaLineas.class);
-                intent.putExtra("objetoData2",listaArray.get(position));
+                intent.putExtra("objetoData",listaArray.get(position));
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -114,5 +115,6 @@ public class Pedidos extends AppCompatActivity {
     private void catalogo(View view){
         Intent intent = new Intent(this, Catalogo.class);
         startActivityForResult(intent,1234);
+        finish();
     }
 }

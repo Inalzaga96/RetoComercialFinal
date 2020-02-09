@@ -48,9 +48,8 @@ public class Partner extends AppCompatActivity {
 
 
         //  BOTONES
-        Button btnVisualiza = (Button) findViewById(R.id.btnVisualiza);
         Button home = (Button) findViewById(R.id.btnHome2);
-        Button nuevo = (Button) findViewById(R.id.btnNuevo);
+        Button nuevo = (Button) findViewById(R.id.btnNuevo2);
         Button enviar = (Button) findViewById(R.id.btnEnviar);
         home.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -60,12 +59,6 @@ public class Partner extends AppCompatActivity {
         nuevo.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 NuevoPart(null);
-            }
-        });
-        btnVisualiza.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                visualizaPart(null);
             }
         });
         enviar.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +73,7 @@ public class Partner extends AppCompatActivity {
                 Intent intent = new Intent(Partner.this,VisualizaPartner.class);
                 intent.putExtra("objetoData",arrayPartner.get(position));
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -110,7 +104,6 @@ public class Partner extends AppCompatActivity {
     public void NuevoPart(View view) {
         Intent intent = new Intent(this, NuevoPartner.class);
         startActivityForResult(intent,3456);
-
     }
     public void crearPartner(String[] datos) {
         UsuariosSQLiteHelper bd = new UsuariosSQLiteHelper(getApplication(), "BaseDatosIkeya", null, 1);
@@ -136,11 +129,6 @@ public class Partner extends AppCompatActivity {
             String result = _data.getStringExtra("partner");
             String[] datos = result.split("\\|");
             crearPartner(datos);
-    }
-    public void visualizaPart(View view) {
-        Intent intent = new Intent(this, VisualizaPartner.class);
-        startActivityForResult(intent,3456);
-
     }
     public void escribeXML(){
         UsuariosSQLiteHelper usdbh =new UsuariosSQLiteHelper(this, "BaseDatosIkeya", null, 1);

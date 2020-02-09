@@ -103,8 +103,4 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Intent intent = new Intent(this, Pedidos.class);
         startActivityForResult(intent,1234);
     }
-    public void base(View view){
-        Intent intent = new Intent(this, BaseDatos.class);
-        startActivityForResult(intent,1234);
-    }
 }

@@ -10,52 +10,52 @@
     <Spinner
         android:id="@+id/spnLineas"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="38dp"
         android:layout_marginStart="3dp"
+        android:layout_marginTop="158dp"
         android:layout_marginEnd="3dp"
-        android:layout_marginBottom="58dp"
-        app:layout_constraintBottom_toTopOf="@+id/codProdu"
+        android:layout_marginBottom="156dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView27"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/codProdu"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="46dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="48dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/CodPed"
+        app:layout_constraintBottom_toTopOf="@+id/textView27"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView26"
+        app:layout_constraintStart_toEndOf="@+id/textView27"
         app:layout_constraintTop_toBottomOf="@+id/spnLineas" />
 
     <EditText
         android:id="@+id/CodPed"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginBottom="38dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="27dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/textView28"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView27"
-        app:layout_constraintTop_toBottomOf="@+id/codProdu" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
-        android:layout_marginEnd="77dp"
-        android:layout_marginBottom="142dp"
+        android:layout_marginTop="42dp"
         android:text="Importe"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Importe"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
@@ -64,51 +64,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
-        android:layout_marginEnd="62dp"
-        android:layout_marginBottom="42dp"
+        android:layout_marginTop="33dp"
         android:text="Cantidad"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView29"
-        app:layout_constraintEnd_toStartOf="@+id/Cantidad"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CodPed" />
+        app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
     <EditText
         android:id="@+id/Importe"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="37dp"
-        android:layout_marginEnd="29dp"
+        android:layout_width="173dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="93dp"
         android:ems="10"
         android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/btnNuevo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView29"
-        app:layout_constraintTop_toBottomOf="@+id/Cantidad" />
+        app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
     <EditText
         android:id="@+id/Cantidad"
         android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="38dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="19dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/textView29"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView28"
-        app:layout_constraintTop_toBottomOf="@+id/CodPed" />
+        app:layout_constraintBottom_toTopOf="@+id/Importe"
+        app:layout_constraintEnd_toEndOf="@+id/Importe"
+        app:layout_constraintStart_toStartOf="@+id/CodPed"
+        app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
     <TextView
         android:id="@+id/textView26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="7dp"
         android:text="Cod Produ"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/codProdu"
-        app:layout_constraintEnd_toStartOf="@+id/codProdu"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -116,24 +112,58 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="1dp"
         android:text="Cod pedido"
         android:textSize="30sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/CodPed"
-        app:layout_constraintEnd_toStartOf="@+id/CodPed"
+        app:layout_constraintBottom_toBottomOf="@+id/CodPed"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:layout_marginBottom="74dp"
         android:text="LINEAS"
         android:textSize="50sp"
-        app:layout_constraintBottom_toTopOf="@+id/spnLineas"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="46dp"
+        android:text="Volver"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:text="Guardar"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnNuevo"
+        app:layout_constraintEnd_toStartOf="@+id/btnNuevo" />
+
+    <Button
+        android:id="@+id/btnNuevo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="46dp"
+        android:text="Nueva"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnBorraLinea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Borrar Linea"
+        app:layout_constraintBottom_toTopOf="@+id/spnLineas"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,6 +39,7 @@
         <activity android:name=".Adaptador3" />
         <activity android:name=".Pedido" />
         <activity android:name=".VisualizaLineas" />
+        <activity android:name=".NuevaLinea" />
 
         <meta-data
             android:name="com.google.android.gms.version"
