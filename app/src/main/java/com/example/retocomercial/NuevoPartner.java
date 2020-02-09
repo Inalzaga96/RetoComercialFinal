@@ -45,7 +45,7 @@ public class NuevoPartner extends AppCompatActivity {
         nuevo.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 guardarDatos();
-                //EscribeXML();
+
             }
         });
 
@@ -59,61 +59,6 @@ public class NuevoPartner extends AppCompatActivity {
         Intent intent = new Intent(this, Partner.class);
         setResult(RESULT_OK,intent);
         finish();
-    }
-
-    private void EscribeXML(){
-        try {
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            Document doc = db.newDocument();
-            //<PARTNERS>
-            Element eParts = doc.createElement("Partners");
-            doc.appendChild(eParts);
-                //<PARTNER>
-                Element ePart = doc.createElement("Partner");
-                eParts.appendChild(ePart);
-                    //EMPRESA
-                    Element eEmpresa = doc.createElement("Empresa");
-                    eEmpresa.appendChild(doc.createTextNode(empr.getText().toString()));
-                    ePart.appendChild(eEmpresa);
-                    //APELLIDO1
-                    Element eApell1 = doc.createElement("apellido");
-                    eApell1.appendChild(doc.createTextNode(apell.getText().toString()));
-                    ePart.appendChild(eApell1);
-                    //NOMBRE
-                    Element eNombre = doc.createElement("Nombre");
-                    eNombre.appendChild(doc.createTextNode(nom.getText().toString()));
-                    ePart.appendChild(eNombre);
-                    //DIRECCION1
-                    Element eDirec1 = doc.createElement("Direccion1");
-                    eDirec1.appendChild(doc.createTextNode(direc1.getText().toString()));
-                    ePart.appendChild(eDirec1);
-                    //POBLACION
-                    Element ePobla = doc.createElement("Poblacion");
-                    ePobla.appendChild(doc.createTextNode(pobla.getText().toString()));
-                    ePart.appendChild(ePobla);
-                    //TELEFONO
-                    Element eTelef = doc.createElement("telefono");
-                    eTelef.appendChild(doc.createTextNode(telef.getText().toString()));
-                    ePart.appendChild(eTelef);
-                    //COMERCIAL
-                    Element eComer = doc.createElement("Comercial");
-                    eComer.appendChild(doc.createTextNode(comer.getText().toString()));
-                    ePart.appendChild(eComer);
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File("/data/data/"+BuildConfig.APPLICATION_ID+"/Partners1.xml"));
-            transformer.transform(source, result);
-            Toast aviso = Toast.makeText(getApplicationContext(), "Exito!", Toast.LENGTH_SHORT);
-            aviso.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-            aviso.show();
-        } catch(Exception e) {
-            e.getMessage();
-            Toast aviso = Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT);
-            aviso.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-            aviso.show();
-        }
     }
 
     private void guardarDatos() {

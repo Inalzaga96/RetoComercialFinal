@@ -1,6 +1,8 @@
 package com.example.retocomercial;
 
-public class Partners {
+import java.io.Serializable;
+
+public class Partners implements Serializable {
 
     private String titulo;
     private String contenido;

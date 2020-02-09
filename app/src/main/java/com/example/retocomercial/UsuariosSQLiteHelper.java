@@ -84,7 +84,6 @@ public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(login);
         db.execSQL(eventos);
         db.execSQL(articulos);
-        //db.execSQL(crearUsuarios);
         db.execSQL(crearUsuarios2);
         db.execSQL(crearPartners);
         db.execSQL(crearEventos);

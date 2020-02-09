@@ -15,11 +15,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class VisualizaPartner extends AppCompatActivity {
+    private Partners item;
     TextView empresa,IDComer,nombre,apellidos,empr,direc,pobla,telef,email;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.visualizapartner);
-        empresa = (TextView) findViewById(R.id.txtBusca);
+        item = (Partners) getIntent().getSerializableExtra("objetoData");
         IDComer = (TextView) findViewById(R.id.txtIDComer);
         nombre = (TextView) findViewById(R.id.txtNom);
         apellidos = (TextView) findViewById(R.id.txtApell);
@@ -28,16 +29,11 @@ public class VisualizaPartner extends AppCompatActivity {
         pobla = (TextView) findViewById(R.id.txtPobla);
         telef = (TextView) findViewById(R.id.txtTelef);
         email = (TextView) findViewById(R.id.txtEmail);
-        Button buscador = (Button) findViewById(R.id.btnBuscador);
         Button guardar = (Button) findViewById(R.id.btnGuardar);
         Button volver = (Button) findViewById(R.id.btnVolver);
         Button borrar = (Button) findViewById(R.id.btnBorrar);
 
-        buscador.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                visualiza();
-            }
-        });
+        visualiza();
         guardar.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 guarda();
@@ -62,7 +58,7 @@ public class VisualizaPartner extends AppCompatActivity {
         SQLiteDatabase db = usdbh.getReadableDatabase();
 
         try{
-        Cursor c = db.rawQuery("SELECT * FROM Partners WHERE empresa='"+ empresa.getText() +"'", null);
+        Cursor c = db.rawQuery("SELECT * FROM Partners WHERE idPartner="+ item.getTitulo(), null);
         if (c.moveToFirst()) {
             //Recorremos el cursor hasta que no haya más registros
             Integer idComer = c.getInt(c.getColumnIndex("id_comercial"));
@@ -93,40 +89,43 @@ public class VisualizaPartner extends AppCompatActivity {
     private void guarda(){
         UsuariosSQLiteHelper bd = new UsuariosSQLiteHelper(getApplication(), "BaseDatosIkeya", null, 1);
         SQLiteDatabase db = bd.getWritableDatabase();
-        String sql = String.format("UPDATE Partners SET id_comercial = '%s', nombre = '%s', apellidos = '%s', empresa = '%s', direccion = '%s', telefono = '%s', poblacion = '%s', email = '%s' WHERE empresa = '%s'",IDComer.getText(),nombre.getText(),apellidos.getText(),empr.getText(),direc.getText(),telef.getText(),pobla.getText(),email.getText(),empresa.getText());
+        String sql = String.format("UPDATE Partners SET id_comercial = '%s', nombre = '%s', apellidos = '%s', empresa = '%s', direccion = '%s', telefono = '%s', poblacion = '%s', email = '%s' WHERE idPartner = '%s'",IDComer.getText(),nombre.getText(),apellidos.getText(),empr.getText(),direc.getText(),telef.getText(),pobla.getText(),email.getText(),item.getTitulo());
         try{
             db.execSQL(sql);
             Toast aviso = Toast.makeText(getApplicationContext(), "UPDATE EXITOSO!", Toast.LENGTH_SHORT);
             aviso.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
             aviso.show();
             finish();
+            vuelve();
         }catch(Exception e){
             e.getMessage();
             Toast aviso = Toast.makeText(getApplicationContext(), "UPDATE ERRONEO!", Toast.LENGTH_SHORT);
             aviso.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
             aviso.show();
         }
+        db.close();
     }
     private void vuelve() {
         Intent intent = new Intent(this, Partner.class);
-        setResult(RESULT_OK, intent);
+        startActivityForResult(intent,3456);
         finish();
     }
     private void borra(){
         UsuariosSQLiteHelper bd =new UsuariosSQLiteHelper(this, "BaseDatosIkeya", null, 1);
         SQLiteDatabase db = bd.getWritableDatabase();
-        String sql = String.format("DELETE FROM Partners WHERE empresa = '%s'",empresa.getText());
-
+        String sql = String.format("DELETE FROM Partners WHERE idPartner = '%s'",item.getTitulo());
         try{
             db.execSQL(sql);
             Toast aviso = Toast.makeText(getApplicationContext(), "DELETE EXITOSO!", Toast.LENGTH_SHORT);
             aviso.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
             aviso.show();
+            vuelve();
         }catch(Exception e){
             e.getMessage();
             Toast aviso = Toast.makeText(getApplicationContext(), "DELETE ERRONEO!", Toast.LENGTH_SHORT);
             aviso.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
             aviso.show();
         }
+        db.close();
     }
 }

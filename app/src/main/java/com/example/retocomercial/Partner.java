@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -34,14 +35,17 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Partner extends AppCompatActivity {
     private Adaptador2 adaptador;
     private ListView lPartners;
+    private ArrayList<Partners> arrayPartner;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.partners);
         lPartners =findViewById(R.id.partners);
 
         lPartners = (ListView) findViewById(R.id.partners);
-        adaptador = new Adaptador2(this,GetArrayItems());
+        arrayPartner = GetArrayItems();
+        adaptador = new Adaptador2(this,arrayPartner);
         lPartners.setAdapter(adaptador);
+
 
         //  BOTONES
         Button btnVisualiza = (Button) findViewById(R.id.btnVisualiza);
@@ -70,6 +74,14 @@ public class Partner extends AppCompatActivity {
                 enviaXML();
             }
         });
+        lPartners.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(Partner.this,VisualizaPartner.class);
+                intent.putExtra("objetoData",arrayPartner.get(position));
+                startActivity(intent);
+            }
+        });
     }
     private ArrayList<Partners> GetArrayItems(){
         ArrayList<Partners> listItems = new ArrayList<>();
@@ -85,7 +97,7 @@ public class Partner extends AppCompatActivity {
                 String nombre = c.getString(1);
                 String apellido = c.getString(2);
                 String empresa = c.getString(3);
-                listItems.add(new Partners("Partner "+codigo,"Nombre : "+ nombre + " "+ apellido , "Empresa : "+ empresa));
+                listItems.add(new Partners(codigo.toString(),"Nombre : "+ nombre + " "+ apellido , "Empresa : "+ empresa));
             } while(c.moveToNext());
         }
         return listItems;
@@ -98,6 +110,7 @@ public class Partner extends AppCompatActivity {
     public void NuevoPart(View view) {
         Intent intent = new Intent(this, NuevoPartner.class);
         startActivityForResult(intent,3456);
+
     }
     public void crearPartner(String[] datos) {
         UsuariosSQLiteHelper bd = new UsuariosSQLiteHelper(getApplication(), "BaseDatosIkeya", null, 1);
