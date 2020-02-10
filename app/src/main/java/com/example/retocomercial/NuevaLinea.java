@@ -53,7 +53,7 @@ public class NuevaLinea extends AppCompatActivity {
         } else {
             UsuariosSQLiteHelper bd = new UsuariosSQLiteHelper(getApplication(), "BaseDatosIkeya", null, 1);
             SQLiteDatabase db = bd.getWritableDatabase();
-            Cursor cursor = db.rawQuery("select Max(cod) from lineas WHERE cod_pedido = "+codigoPedido , null);
+            Cursor cursor = db.rawQuery("select Max(cod) from lineas", null);
             cursor.moveToFirst();
             int count= cursor.getInt(0);
             String sql = String.format("INSERT INTO lineas VALUES('%s', '%s', '%s', '%s', '%s')",(count+1),codProd.getText(),codigoPedido,cantidad.getText(),importe.getText());

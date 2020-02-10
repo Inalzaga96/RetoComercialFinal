@@ -42,11 +42,25 @@ public class VisualizaLineas extends AppCompatActivity {
         Button btnGuardar = (Button) findViewById(R.id.btnGuardar);
         Button btnBorraLinea = (Button) findViewById(R.id.btnBorraLinea);
         Button btnNueva= (Button) findViewById(R.id.btnNuevo);
+        Button btnBorraPed = (Button) findViewById(R.id.btnBorraPed);
 
 
         UsuariosSQLiteHelper usdbh =new UsuariosSQLiteHelper(this, "BaseDatosIkeya", null, 1);
         SQLiteDatabase db = usdbh.getReadableDatabase();
-        Cursor c0 = db.rawQuery(" SELECT cod FROM lineas WHERE cod_pedido = "+item.getTitulo(), null);
+        Cursor c = db.rawQuery("SELECT Max(cod) FROM lineas WHERE cod_pedido = "+item.getTitulo(),null);
+        c.moveToFirst();
+        int count= c.getInt(0);
+
+        if(count == 0){
+            codProdu.setFocusable(false);
+            codPed.setFocusable(false);
+            Cantidad.setFocusable(false);
+            importe.setFocusable(false);
+            btnGuardar.setEnabled(false);
+            btnBorraLinea.setEnabled(false);
+        }
+
+            Cursor c0 = db.rawQuery(" SELECT cod FROM lineas WHERE cod_pedido = "+item.getTitulo(), null);
         if (c0.moveToFirst()) {
             //Recorremos el cursor hasta que no haya más registros
             do {
@@ -110,6 +124,29 @@ public class VisualizaLineas extends AppCompatActivity {
                 intent.putExtra("objetoData2",item.getTitulo());
                 startActivity(intent);
                 finish();
+            }
+        });
+        btnBorraPed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UsuariosSQLiteHelper bd = new UsuariosSQLiteHelper(getApplication(), "BaseDatosIkeya", null, 1);
+                SQLiteDatabase db = bd.getWritableDatabase();
+                String sql = String.format("DELETE FROM lineas WHERE cod_pedido = '%s'",item.getTitulo());
+                String sql2 = String.format("DELETE FROM pedidos WHERE cod = '%s'",item.getTitulo());
+                try{
+                    db.execSQL(sql);
+                    db.execSQL(sql2);
+                    Toast aviso = Toast.makeText(getApplicationContext(), "DELETE EXITOSO!", Toast.LENGTH_SHORT);
+                    aviso.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                    aviso.show();
+                    vuelve();
+                }catch(Exception e){
+                    e.getMessage();
+                    Toast aviso = Toast.makeText(getApplicationContext(), "DELETE ERRONEO!", Toast.LENGTH_SHORT);
+                    aviso.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                    aviso.show();
+                }
+                db.close();
             }
         });
     }

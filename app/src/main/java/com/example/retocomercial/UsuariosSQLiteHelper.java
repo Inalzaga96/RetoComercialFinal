@@ -57,13 +57,13 @@ public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
 
     //private String crearUsuarios = "INSERT INTO usuarios(id_comercial,usuario,pwd) VALUES(9223372036854775807,'mikel', '1234');";
     private String crearUsuarios2= "INSERT INTO usuarios(usuario,pwd) VALUES('Kerman', '1234'), ('Iñaki','1234');";
-    private String crearPartners= "INSERT INTO partners(id_comercial,nombre,apellidos,empresa,direccion,telefono,poblacion,email) VALUES(1,'Kerman','sorarrain','azules','calle','943268456','Tolosa','kerman@gmail.com'),(1,'mikel','seara','azules','calle','943746218','Andoain','mikel@gmail.com');";
+    private String crearPartners= "INSERT INTO partners(id_comercial,nombre,apellidos,empresa,direccion,telefono,poblacion,email) VALUES(1,'Kerman','sorarrain','Azules','calle','943268456','Tolosa','kerman@gmail.com'),(1,'Iñaki','Alzaga','Pasaban','Txomin San Sebastian','660889733','Astigarraga','inalzaga@gmail.com');";
     private String crearEventos="INSERT INTO EVENTOS(id_comercial,NOMBRE,DESCRIPCION,HORA,FECHA) VALUES(1,'Ir a casa','mañana','16:20','02/08/19')";
     private String crearEventos2="INSERT INTO EVENTOS(id_comercial,NOMBRE,DESCRIPCION,HORA,FECHA) VALUES(2,'Salir de casa','hoy','15:09','06/08/19')";
-    private String crearPedidos="INSERT INTO PEDIDOS(ID_PARTNER,FECHA) VALUES(1,'02/06/19')";
-    private String crearLineas="INSERT INTO lineas VALUES(1,2,1,20,500)";
-    private String crearLineas2="INSERT INTO lineas VALUES(2,3,1,10,1500)";
-    private String crearPedidos2="INSERT INTO PEDIDOS(ID_PARTNER,FECHA) VALUES(2,'03/08/19')";
+    private String crearPedidos="INSERT INTO PEDIDOS(ID_PARTNER,FECHA) VALUES(1,'02/06/2019'),(1,'28/02/2019'),(1,'30/04/2019'),(1,'15/07/2019'),(1,'12/11/2019')";
+    private String crearLineas="INSERT INTO lineas VALUES(1,2,1,20,500),(2,4,1,20,500),(3,1,2,20,500),(4,5,2,20,500),(5,1,3,20,500),(6,5,3,20,500),(7,1,4,20,500),(8,5,4,20,500),(9,1,5,30,700),(10,5,5,45,1000)";
+    private String crearLineas2="INSERT INTO lineas VALUES(11,5,6,10,7500),(12,2,7,1,350),(13,3,8,10,1500),(14,4,9,21,2300)";
+    private String crearPedidos2="INSERT INTO PEDIDOS(ID_PARTNER,FECHA) VALUES(2,'03/08/2019'),(2,'12/03/2019'),(2,'01/10/2019'),(2,'12/12/2019')";
     private String creaArticulo="INSERT INTO articulos(id_articulo,descripcion,precio,imagen) VALUES(1,'Mancuernas 5kg',17,'mancuernas5')";
     private String creaArticulo2="INSERT INTO articulos(id_articulo,descripcion,precio,imagen) VALUES(2,'Mancuernas 10kg',25,'mancuernas10')";
     private String creaArticulo3="INSERT INTO articulos(id_articulo,descripcion,precio,imagen) VALUES(3,'Norditrack C300',150,'norditrack')";

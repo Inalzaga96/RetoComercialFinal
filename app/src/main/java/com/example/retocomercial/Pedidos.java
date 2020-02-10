@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,7 +12,12 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Pedidos extends AppCompatActivity {
@@ -49,6 +55,32 @@ public class Pedidos extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 catalogo(null);
+            }
+        });
+        anadir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                String date = sdf.format(new Date());
+
+                UsuariosSQLiteHelper bd = new UsuariosSQLiteHelper(getApplication(), "BaseDatosIkeya", null, 1);
+                SQLiteDatabase db = bd.getWritableDatabase();
+                Cursor cursor = db.rawQuery("select Max(cod) from pedidos", null);
+                cursor.moveToFirst();
+                int count= cursor.getInt(0);
+                String sql = String.format("INSERT INTO pedidos VALUES('%s', '%s', '"+date+"')",(count+1),codPartner.get(partners.getSelectedItemPosition()));
+                try {
+                    db.execSQL(sql);
+                    finish();
+                    Intent intent = new Intent(Pedidos.this, Pedidos.class);
+                    startActivityForResult(intent,3456);
+                } catch (Exception e) {
+                    Toast aviso = Toast.makeText(getApplicationContext(), (count+1)+" / "+codPartner.get(partners.getSelectedItemPosition())+" / "+date, Toast.LENGTH_SHORT);
+                    aviso.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                    aviso.show();
+                    e.getMessage();
+                }
+                db.close();
             }
         });
 //===============================================================================================================
